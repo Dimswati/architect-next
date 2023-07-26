@@ -1,0 +1,30 @@
+query ServiceList {
+  services {
+    edges {
+      node {
+        ...Service
+      }
+    }
+  }
+}
+
+query SingleService($slug: ID!) {
+    service(id: $slug, idType: SLUG) {
+        ...Service
+    }
+}
+
+fragment Service on Service {
+    databaseId
+    title
+    slug
+    content
+    featuredImage {
+        node {
+            sourceUrl(size: LARGE)
+        }
+    }
+    serviceFields {
+        projectsDone
+    }
+} 

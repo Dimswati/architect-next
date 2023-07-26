@@ -1,4 +1,3 @@
-
 const Client = ({ imageUrl, clientName }: Client) => {
   return (
     <div className="border border-neutral-300">

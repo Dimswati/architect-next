@@ -1,6 +1,9 @@
+'use client'
+
 import { useForm } from 'react-hook-form'
 
 import Button from "./Button"
+import Input from './Input'
 
 type QuotationFormValues = {
     service: string
@@ -18,15 +21,15 @@ const QuotationForm = () => {
         }
     })
 
-    const onSubmit = (values: QuotationFormValues) =>{
+    const onSubmit = (values: QuotationFormValues) => {
         console.log(values)
     }
 
   return (
-    <form method="post" className="flex flex-col gap-y-4 p-5 border-2 border-neutral-200" noValidate onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} method="post" className="flex flex-col gap-y-4 p-5 border-2 border-neutral-200" noValidate>
         <div className="flex sm:flex-row flex-col gap-y-4 sm:gap-x-4">
             <div className="w-full">
-                <select {...register('service')}>
+                <select {...register('service')} className='w-full border-gray-300 focus:ring-0 focus:outline-none focus:bg-white focus:border-orange-500'>
                     <option value="Texture Painting">Texture Painting</option>
                     <option value="Wooden Flooring">Wooden Flooring</option>
                     <option value="Interior Curtains">Interior Curtains</option>
@@ -36,7 +39,7 @@ const QuotationForm = () => {
                 <p>{errors.service?.message}</p>
             </div>
             <div className="w-full">
-                <input type="text" placeholder="Your Name" {...register('name', {
+                <Input type="text" placeholder="Your Name" {...register('name', {
                     required: {
                         value: true,
                         message: 'Your name is required'
@@ -47,7 +50,7 @@ const QuotationForm = () => {
         </div>
         <div className="flex sm:flex-row flex-col gap-y-4 sm:gap-x-4">
             <div className="w-full">
-                <input type="email" {...register('email', {
+                <Input type="email" {...register('email', {
                     required: {
                         value: true,
                         message: 'Your Email is required'
@@ -56,7 +59,7 @@ const QuotationForm = () => {
                 <p>{errors.email?.message}</p>
             </div>
             <div className="w-full">
-                <input type="tel" {...register('phone', {
+                <Input type="tel" {...register('phone', {
                     required: {
                         value: true,
                         message: 'Your Phone is required'
@@ -64,8 +67,8 @@ const QuotationForm = () => {
                 })} placeholder="Phone Number"/>
             </div>
         </div>
-        <textarea {...register('message')} placeholder="Message" className="resize-none h-full" rows={4}/>
-        <Button type='submit' className="bg-neutral-800 hover:bg-orange-500">
+        <textarea {...register('message')} placeholder="Message" className="resize-none h-full border-gray-300 focus:ring-0 focus:outline-none bg-neutral-100 focus:bg-white focus:border-orange-500" rows={4}/>
+        <Button type='submit' className="bg-neutral-800 hover:bg-orange-500 text-white">
             get quote
         </Button>
     </form>

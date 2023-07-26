@@ -1,0 +1,31 @@
+query ProjectList {
+  projects {
+    edges {
+      node {
+        ...Project
+      }
+    }
+  }
+}
+
+fragment Project on Project {
+        databaseId
+        slug
+        title
+        date
+        groups {
+          nodes {
+            name
+            slug
+          }
+        }
+        projectFields {
+          rating
+          client
+        }
+        featuredImage {
+          node {
+            sourceUrl(size: LARGE)
+          }
+        }
+}

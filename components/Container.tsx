@@ -1,20 +1,21 @@
 import React from 'react'
+import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type ContainerProps = {
+interface ContainerProps extends React.HtmlHTMLAttributes<HTMLDivElement>{
     children: React.ReactNode
-    sectionClasses?: string
-    innerClasses?: string 
+    className?: string
 }
 
-const Container: React.FC<ContainerProps> = ({ children, innerClasses, sectionClasses }: ContainerProps) => {
+const Container = forwardRef<HTMLDivElement, ContainerProps>(({
+  children,
+  className
+}, ref)=>{
   return (
-    <section className={twMerge(`bg-white py-20`, sectionClasses)}>
-        <div className={twMerge(``, innerClasses)}>
-            {children}
-        </div>
-    </section>
+    <div ref={ref} className={twMerge('bg-white py-20',className)}>
+      {children}
+    </div>
   )
-}
+}) 
 
 export default Container

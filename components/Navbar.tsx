@@ -11,10 +11,6 @@ const Navbar = ({children}: {children: React.ReactNode}) => {
 
     const menuItems = [
         {
-            path: 'home',
-            isActive: false
-        },
-        {
             path: 'team',
             isActive: false
         },
@@ -33,7 +29,7 @@ const Navbar = ({children}: {children: React.ReactNode}) => {
     ]
 
     const [openMenu, setOpenMenu] = useState<boolean>(false)
-    const [menu, setMenu] = useState(menuItems)
+    const [menu, setMenu] = useState(menuItems) 
 
     const pathname = usePathname()
 
@@ -49,7 +45,7 @@ const Navbar = ({children}: {children: React.ReactNode}) => {
             <img src="http://a.ourhtmldemo.com/decorators/wp-content/themes/decorators/images/logo.png" className='object-cover object-center md:w-48 w-40 h-auto cursor-pointer' alt="logo" />
             <div className='md:flex lg:gap-x-4 gap-x-2 hidden'>
                 {menuItems.map(({path, isActive}) => (
-                    <MenuItem path={path} isActive={isActive}/>
+                    <MenuItem key={path} path={path} isActive={isActive}/>
                 ))}
             </div>
             <div className='text-2xl md:hidden inline-block cursor-pointer' onClick={()=>setOpenMenu(!openMenu)}>

@@ -1,0 +1,15 @@
+query GroupList {
+  groups {
+    edges {
+      node {
+        databaseId
+        name
+        slug
+      }
+    }
+  }
+}
+
+query GroupProjects {
+    
+}
